@@ -1,37 +1,22 @@
-import React, {Component, useState, useEffect} from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import Login from "./pages/Login";
+import Test from "./pages/Test";
+import Main from "./pages/Main";
 
 function App() {
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-      fetch('/api')
-          .then(response => response.text())
-          .then(message => {
-              setMessage(message)
-          });
-  }, []);
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">{message}</h1>
-            <p>
-                Edit <code>src/App.js</code> and save to reload.
-            </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Router>
+            <Routes>
+                <Route exact path="/" element={<Test/>}>
+                </Route>
+                <Route exact path="/login" element={<Login/>}>
+                </Route>
+                <Route exact path="/home" element={<Main/>}>
+                </Route>
+            </Routes>
+        </Router>
+    );
 }
 
 export default App;
