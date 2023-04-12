@@ -5,22 +5,22 @@ import logout from "../img/logout.svg";
 export const MenuButtonsComponent = () => {
     return (
             <div className="collapse navbar-collapse pages-href" id="navbarNav">
-                <ul className="navbar-nav">
+                <ul className="navbar-nav navigation">
                     <li className="nav-item">
                        <a className="nav-link" href="#">
-                            <img src={spatula} alt="spatula"/>
+                            <img className="image" src={spatula} alt="spatula"/>
                             <span>Recipes</span>
                        </a>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" href="#">
-                            <img src={profile} alt="profile"/>
+                            <img className="image" src={profile} alt="profile"/>
                             <span>Profile</span>
                         </a>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" href="#">
-                            <img src={logout} alt="logout"/>
+                            <img className="image" src={logout} alt="logout"/>
                             <span>Logout</span>
                         </a>
                     </li>

@@ -99,7 +99,7 @@ a > span {
     height: 1.2em;
 }
 
-@media only screen and (max-device-width: 1000px){
+@media only screen and (max-device-width: 991px){
     .logo-home {
         margin-left: 1rem;
         justify-content: flex-start;
@@ -126,9 +126,35 @@ a > span {
         width: 15%;
         background-size: 1.8rem;
     }
+
+    .navbar-collapse {
+        position: absolute;
+        top: 13vh;
+        right: 0;
+    }
+
+    .navigation {
+        background: linear-gradient(359.97deg, #F8003C 0.02%, #CE5270 99.98%);
+        width: 200px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .image {
+        width: 3rem;
+    }
+
+    .nav-link > span {
+        font-size: 1.4rem;
+        color: black;
+    }
 }
 
 @media only screen and (max-device-width: 650px) {
+    .pic {
+        width: 60%;
+    }
+
     .search-bar > input {
         width: 85%;
     }
