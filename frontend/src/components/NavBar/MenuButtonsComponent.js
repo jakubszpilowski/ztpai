@@ -1,6 +1,6 @@
-import spatula from "../img/spatula.svg";
-import profile from "../img/user.svg";
-import logout from "../img/logout.svg";
+import spatula from "../../assets/spatula.svg";
+import profile from "../../assets/user.svg";
+import logout from "../../assets/logout.svg";
 
 export const MenuButtonsComponent = () => {
     return (

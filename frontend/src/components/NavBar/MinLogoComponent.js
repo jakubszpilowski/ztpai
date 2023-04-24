@@ -1,5 +1,5 @@
-import logo from "../img/cooking 2.svg";
-import desc from "../img/COOLinaria.svg";
+import logo from "../../assets/cooking 2.svg";
+import desc from "../../assets/COOLinaria.svg";
 
 export const MinLogoComponent = () => {
     return (

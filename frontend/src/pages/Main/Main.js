@@ -1,6 +1,6 @@
 import React from 'react';
-import {NavBarComponent} from "../components/NavBarComponent";
-import "../styles/Main.css";
+import {NavBarComponent} from "../../components/NavBar/NavBarComponent";
+import "./Main.css";
 
 function Main() {
     return (

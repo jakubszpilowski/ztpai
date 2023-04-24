@@ -1,5 +1,5 @@
 import {MinLogoComponent} from "./MinLogoComponent";
-import "../styles/NavBar.css";
+import "./NavBar.css";
 import {SearchBarComponent} from "./SearchBarComponent";
 import {MenuButtonsComponent} from "./MenuButtonsComponent";
 import {MenuTogglerComponent} from "./MenuTogglerComponent";

@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import '../styles/Login.css'
-import {LoginComponent} from "../components/LoginComponent";
-import {RegisterComponent} from "../components/RegisterComponent";
-import {LogoComponent} from "../components/LogoComponent";
+import './Login.css'
+import {LoginComponent} from "../../components/Login/LoginComponent";
+import {RegisterComponent} from "../../components/Register/RegisterComponent";
+import {LogoComponent} from "../../components/Logo/LogoComponent";
 
 function Login() {
     const [currentForm, setCurrentForm] = useState('login');
