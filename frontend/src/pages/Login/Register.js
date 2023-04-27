@@ -1,15 +1,15 @@
 import React from 'react';
 import './Login.css'
-import {LoginComponent} from "../../components/Login/LoginComponent";
+import {RegisterComponent} from "../../components/Register/RegisterComponent";
 import {LogoComponent} from "../../components/Logo/LogoComponent";
 
-function Login() {
+function Register() {
     return (
         <div className="page-content">
-            <LoginComponent/>
+            <RegisterComponent/>
             <LogoComponent/>
         </div>
     );
 }
 
-export default Login;
+export default Register;

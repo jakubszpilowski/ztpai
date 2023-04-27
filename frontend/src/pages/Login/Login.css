@@ -39,13 +39,13 @@
 }
 
 .register-form {
-    height: 55%;
-    width: 55%;
+    height: 65%;
+    width: 60%;
 }
 
 .login-form {
-    height: 50%;
-    width: 55%;
+    height: 55%;
+    width: 60%;
 }
 
 label {
@@ -65,7 +65,7 @@ label {
 input {
     border: 1px solid black;
     border-radius: 10px;
-    height: 70%;
+    height: 60%;
     text-align: center;
 }
 
@@ -80,28 +80,34 @@ span {
     border-radius: 10px;
     font: normal 400 1.5rem 'Content';
     color: white;
+    text-align: center;
 }
 
-.register-btn, .action-button {
+.link-btn, .action-button {
     width: 90%;
     height: 12%;
 }
 
-.register-btn {
+.link-btn {
     border: none;
     background: transparent;
+    color: black;
+}
+
+.link-btn > strong {
+    color: #F8003C;
 }
 
 @media only screen and (max-device-width: 1000px) {
     .register-form, .login-form {
-        width: 65%;
+        width: 70%;
     }
 
     .action-button {
         font-size: 1.3rem;
     }
 
-    .register-btn {
+    .link-btn {
         width: 100%;
         font-size: 0.8rem;
     }
@@ -132,6 +138,10 @@ span {
 
     .login-form {
         width: 80%;
+        height: 70%;
+    }
+
+    input {
         height: 70%;
     }
 }
