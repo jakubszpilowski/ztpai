@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {Link} from "react-router-dom";
 
-export const LoginComponent = (props) => {
+export const LoginComponent = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -33,7 +34,7 @@ export const LoginComponent = (props) => {
                            value={password} onChange={handlePasswordChange}/>
                 </div>
                 <button className="action-button mt-2" type="submit">LOGIN</button>
-                <button className="register-btn mt-2" onClick={() => props.onFormSwitch('register')}>Don't have an account yet? <strong>SIGN UP</strong> </button>
+                <Link to="/register" className="link-btn mt-2">Don't have an account yet? <strong>SIGN UP</strong> </Link>
             </form>
         </div>
     );
