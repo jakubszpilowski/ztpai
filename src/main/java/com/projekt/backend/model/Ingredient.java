@@ -1,10 +1,10 @@
 package com.projekt.backend.model;
 
 import jakarta.persistence.*;
-
-import java.util.Set;
+import lombok.Data;
 
 @Entity
+@Data
 @Table(name = "Ingredients")
 public class Ingredient {
     @Id

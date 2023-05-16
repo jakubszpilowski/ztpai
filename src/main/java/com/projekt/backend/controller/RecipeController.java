@@ -1,17 +1,29 @@
 package com.projekt.backend.controller;
 
+import com.projekt.backend.dto.RecipeDto;
+import com.projekt.backend.service.RecipeService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping("/api/recipes")
+@RequiredArgsConstructor
 public class RecipeController {
+    private final RecipeService recipeService;
 
-    @GetMapping("/home-page")
-    public ResponseEntity<String> getAllRecipes(){
-        return ResponseEntity.ok("home-page");
+//    @PostMapping("/add")
+//    public ResponseEntity<?> addNewRecipe(@RequestBody RecipeDto request){
+//        long recipeId = recipeService.addRecipe(request);
+//        return new ResponseEntity<>("Recipe added successfully: " + recipeId, HttpStatus.CREATED);
+//    }
+
+    @GetMapping
+    public ResponseEntity<List<RecipeDto>> getAllRecipes(){
+        return new ResponseEntity<>(recipeService.getAllRecipes(), HttpStatus.OK);
     }
-
 }
