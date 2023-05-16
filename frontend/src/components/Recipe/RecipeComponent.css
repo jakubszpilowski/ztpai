@@ -1,0 +1,18 @@
+.recipe {
+    width: 250px;
+    height: 250px;
+    background-color: #FFDD87;
+    transform: rotate(-1.5deg);
+}
+
+.image-div {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: #D9D9D9;
+    transform: rotate(-5deg);
+    top: 0;
+    right: -10px;
+}
+
+

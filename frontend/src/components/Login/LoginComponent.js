@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 export const LoginComponent = () => {
+    let navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -14,9 +15,30 @@ export const LoginComponent = () => {
         setPassword(e.target.value);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        //TODO:  login implementation
+
+        try{
+            const response = await fetch('http://localhost:8080/api/v1/auth/login', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({username, password})
+            });
+
+            if(response.ok) {
+                const {token} = response.json();
+                localStorage.setItem('token', token);
+                navigate('/home');
+
+            } else {
+                //error handling
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (

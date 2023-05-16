@@ -1,7 +1,9 @@
 import React, {useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 export const RegisterComponent = () => {
+    let navigate = useNavigate();
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
@@ -18,9 +20,24 @@ export const RegisterComponent = () => {
         setEmail(e.target.value);
     };
 
+    const user = {
+        username: username,
+        password: password,
+        email: email
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        //TODO:  register implementation
+        fetch(
+            '/api/auth/register', {
+                method: "POST",
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(user)
+            }).then(response => {
+                if(response.ok) {
+                    navigate('/login')
+                }
+        })
     }
 
     return (
