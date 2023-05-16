@@ -1,16 +1,26 @@
 package com.projekt.backend.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Data
+@Builder
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "Users")
-public class User {
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_user")
@@ -26,16 +36,16 @@ public class User {
     private String email;
 
     @Column(name = "user_recipes")
-    private int recipes = 0;
+    private int recipes;
 
     @Column(name = "user_rating")
-    private double userRating = 0;
+    private double userRating;
 
     @Column(name = "image_path")
     private String imagePath;
 
     @Column(name = "is_admin")
-    private Boolean isAdmin = false;
+    private Boolean isAdmin;
 
     @OneToMany(mappedBy = "author")
     private Set<Comment> comments;
@@ -48,4 +58,39 @@ public class User {
         joinColumns = @JoinColumn(name = "id_user"),
         inverseJoinColumns = @JoinColumn(name = "id_recipe"))
     private Set<Recipe> favouriteRecipes = new HashSet<>();
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(isAdmin.toString()));
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
 }
