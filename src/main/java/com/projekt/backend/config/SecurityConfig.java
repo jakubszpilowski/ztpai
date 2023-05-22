@@ -20,7 +20,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
         httpSecurity
-                .csrf()
+                .cors().and().csrf()
                 .disable()
                 .authorizeHttpRequests()
                 .requestMatchers("/api/v1/auth/**")
