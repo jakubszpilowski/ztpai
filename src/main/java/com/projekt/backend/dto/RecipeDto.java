@@ -9,6 +9,7 @@ import java.util.Set;
 @Data
 @Builder
 public class RecipeDto {
+    private long id;
     private String title;
     private String prepTime;
     private int portion;
