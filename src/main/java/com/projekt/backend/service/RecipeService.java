@@ -1,8 +1,11 @@
 package com.projekt.backend.service;
 
 import com.projekt.backend.dto.RecipeDto;
+import com.projekt.backend.exception.UserNotFoundException;
 import com.projekt.backend.model.Recipe;
+import com.projekt.backend.model.User;
 import com.projekt.backend.repository.RecipeRepository;
+import com.projekt.backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,25 +16,21 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RecipeService {
     private final RecipeRepository recipeRepository;
+    private final UserRepository userRepository;
 
     public List<RecipeDto> getAllRecipes() {
         List<Recipe> recipes = recipeRepository.findAll();
-        List<RecipeDto> recipeDtos = new ArrayList<>();
 
-        for(Recipe r: recipes) {
-            RecipeDto recipeDto = RecipeDto.builder()
-                    .title(r.getTitle())
-                    .portion(r.getPortion())
-                    .prepTime(r.getPrepTime())
-                    .rating(r.getRating())
-                    .username(r.getUser().getUsername())
-//                    .image(r.getImages().get(0))
-                    .tags(r.getTags())
-                    .build();
-            recipeDtos.add(recipeDto);
-        }
+        return mapRecipesToDtos(recipes);
+    }
 
-        return recipeDtos;
+    public List<RecipeDto> getUserRecipes(long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("User not found!"));
+
+        List<Recipe> recipes = recipeRepository.findAllByUser(user);
+
+        return mapRecipesToDtos(recipes);
     }
 
 //    public long addRecipe(RecipeDto request) {
@@ -48,4 +47,24 @@ public class RecipeService {
 //        recipeRepository.save(recipe);
 //        return recipe.getId();
 //    }
+
+    private List<RecipeDto> mapRecipesToDtos(List<Recipe> recipes) {
+        List<RecipeDto> recipeDtos = new ArrayList<>();
+
+        for(Recipe r: recipes) {
+            RecipeDto recipeDto = RecipeDto.builder()
+                    .id(r.getId())
+                    .title(r.getTitle())
+                    .portion(r.getPortion())
+                    .prepTime(r.getPrepTime())
+                    .rating(r.getRating())
+                    .username(r.getUser().getUsername())
+//                    .image(r.getImages().get(0))
+                    .tags(r.getTags())
+                    .build();
+            recipeDtos.add(recipeDto);
+        }
+
+        return recipeDtos;
+    }
 }
