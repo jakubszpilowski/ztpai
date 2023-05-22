@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 2rem;
+    margin-top: 50px;
 }
 
 .grid-container {
@@ -14,5 +14,16 @@
 
 .grid-container > * {
     font-family: 'Cherry Swash', cursive;
-    font-size: 1.8rem;
+}
+
+@media only screen and (max-device-width: 1000px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media only screen and (max-device-width: 600px) {
+    .grid-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }

@@ -60,7 +60,7 @@ export const RegisterComponent = () => {
                            value={email} onChange={handleEmailChange}/>
                 </div>
                 <button className="action-button mt-1" type="submit">REGISTER</button>
-                <Link to="/login" className="link-btn mt-1"> Already have an account?  <strong>LOG IN</strong> </Link>
+                <Link to="/login" className="link-btn mt-1 no-decoration"> Already have an account?  <strong>LOG IN</strong> </Link>
             </form>
         </div>
     );

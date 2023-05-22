@@ -11,7 +11,7 @@
     width: 25%;
 }
 
-a {
+button {
     text-decoration: none;
 }
 
@@ -55,7 +55,7 @@ a {
     width: 20%;
 }
 
-a > span {
+.nav-link > span {
     font-size: 0;
 }
 
@@ -65,7 +65,7 @@ a > span {
     align-items: center;
 }
 
-.nav-item > a > img {
+.nav-item > .nav-link > img {
     max-width: 90%;
 }
 
@@ -80,7 +80,7 @@ a > span {
     width: 150px;
 }
 
-.nav-item:hover span {
+.nav-item:hover > .nav-link > span {
     font-size: 1.3rem;
     font-family: 'Cherry Swash', cursive;
 }
@@ -131,6 +131,7 @@ a > span {
         position: absolute;
         top: 13vh;
         right: 0;
+        z-index: 9999;
     }
 
     .navigation {
