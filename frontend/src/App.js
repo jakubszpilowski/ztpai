@@ -6,6 +6,7 @@ import Register from "./pages/Login/Register"
 import {SetToken} from "./auth/SetToken";
 import Profile from "./pages/Profile/Profile";
 import Favourites from "./pages/Favourites/Favourites";
+import AllRecipes from "./pages/All/AllRecipes";
 
 function App() {
     const token = localStorage.getItem("token");
@@ -20,6 +21,7 @@ function App() {
                 <Route exact path="/login" element={<Login/>}/>
                 <Route exact path="/register" element={<Register/>}/>
                 <Route exact path="/home" element={<Main/>}/>
+                <Route exact path="/all" element={<AllRecipes/>}/>
                 <Route exact path="/profile/:id" element={<Profile/>}/>
                 <Route exact path="/fav/:id" element={<Favourites/>}/>
             </Routes>

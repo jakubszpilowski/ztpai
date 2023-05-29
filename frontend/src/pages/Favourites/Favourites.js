@@ -1,9 +1,9 @@
-import './Favourites.css';
+import '../Main/Main.css';
 import {NavBarComponent} from "../../components/NavBar/NavBarComponent";
 
 function Favourites() {
     return(
-        <div className="fav-page">
+        <div className="page">
             <NavBarComponent/>
         </div>
     );

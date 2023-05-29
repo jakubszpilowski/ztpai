@@ -1,10 +1,10 @@
 import {NavBarComponent} from "../../components/NavBar/NavBarComponent";
-import './Profile.css';
+import '../Main/Main.css';
 import ProfileContainerComponent from "../../components/ProfileContainer/ProfileContainerComponent";
 
 function Profile() {
     return(
-        <div className="profile-page">
+        <div className="page">
             <NavBarComponent/>
             <ProfileContainerComponent/>
         </div>

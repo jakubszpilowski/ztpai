@@ -22,20 +22,15 @@
 
 .tag-li {
     height: 25px;
+    width: fit-content;
     justify-content: center;
     align-items: center;
-    background-color: #F8003C;
     border-radius: 10px;
-    border: solid 1px black;
+    border: solid 1px #F8003C;
 }
 
-.delete-tag-btn {
-    height: 20px;
-    width: 20px;
-    border: none;
-    background-color: transparent;
-    background-image: url("../../assets/close.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 15px;
+.tag-span {
+    font-weight: normal;
+    font-size: 20px;
+    padding: 0 8px;
 }

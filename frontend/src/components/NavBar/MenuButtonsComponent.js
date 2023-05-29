@@ -1,6 +1,7 @@
 import spatula from "../../assets/spatula.svg";
 import profile from "../../assets/user.svg";
 import logout from "../../assets/logout.svg";
+import cookbook from  "../../assets/recipe-book.svg";
 import {Link, useNavigate} from "react-router-dom";
 
 export const MenuButtonsComponent = () => {
@@ -15,9 +16,15 @@ export const MenuButtonsComponent = () => {
             <div className="collapse navbar-collapse pages-href" id="navbarNav">
                 <ul className="navbar-nav navigation">
                     <li className="nav-item">
+                        <Link className="nav-link" to={"/all"}>
+                            <img className="image" src={cookbook} alt="cookbook"/>
+                            <span>All Recipes</span>
+                        </Link>
+                    </li>
+                    <li className="nav-item">
                        <Link className="nav-link" to={`/fav/1`}>
                             <img className="image" src={spatula} alt="spatula"/>
-                            <span>Recipes</span>
+                            <span>Favourites</span>
                        </Link>
                     </li>
                     <li className="nav-item">

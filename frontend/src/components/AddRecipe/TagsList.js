@@ -11,7 +11,7 @@ export const TagsList = ({tags, onDeleteTag}) => {
             <ul className="list-of-tags">
                 {tags.map((tag, index) => (
                     <li className="tag-li" key={index} onClick={(e) => handleDeleteTag(index)}>
-                        {tag}
+                        <span className="tag-span">{tag}</span>
                     </li>
                 ))}
             </ul>

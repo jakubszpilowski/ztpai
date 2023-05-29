@@ -2,6 +2,8 @@ import './AddFormComponent.css';
 import {IngredientsList} from "./IngredientsList";
 import {useState} from "react";
 import {TagsList} from "./TagsList";
+import plate from '../../assets/plate2.svg';
+import clock from '../../assets/clock.svg';
 
 export const AddFormComponent = () => {
     const [ingredients, setIngredients] = useState([]);
@@ -47,9 +49,8 @@ export const AddFormComponent = () => {
 
     return (
         <form className="add-recipe-form">
-            <input className="recipe-title-input" type="text" placeholder="title"/>
+            <input className="recipe-title-input" type="text" placeholder="Enter title"/>
             <div className="category-input">
-                <label htmlFor="category">Choose a category</label>
                 <select id="category" name="category" className="category-list">
                     <option value="breakfast">śniadania</option>
                     <option value="lunch">obiady</option>
@@ -58,6 +59,14 @@ export const AddFormComponent = () => {
                     <option value="apetizers">przystawki</option>
                     <option value="drinks">drinki</option>
                 </select>
+                <div className="portion-input-div">
+                    <img className="icon-input" src={plate} alt="plate"/>
+                    <input className="portion-input" type="text" placeholder="1"/>
+                </div>
+                <div className="time-input-div">
+                    <img className="icon-input-clock" src={clock} alt="clock"/>
+                    <input className="time-input" type="text" placeholder="5 minut"/>
+                </div>
             </div>
             <IngredientsList ingredients={ingredients} onDeleteIngredient={handleDeleteIngredient}/>
             <div className="ingredients-div">

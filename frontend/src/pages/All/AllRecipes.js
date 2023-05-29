@@ -1,15 +1,13 @@
 import React from 'react';
 import {NavBarComponent} from "../../components/NavBar/NavBarComponent";
-import HomepageComponent from "../../components/GridContainers/Homepage/HomepageComponent";
-import "./Main.css";
+import "../Main/Main.css";
 
-function Main() {
+function AllRecipes() {
     return (
         <div className="page">
             <NavBarComponent/>
-            <HomepageComponent/>
         </div>
     );
 }
 
-export default Main;
+export default AllRecipes;
