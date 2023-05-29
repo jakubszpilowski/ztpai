@@ -1,0 +1,41 @@
+.list-of-tags-div {
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 40px;
+    font-weight: bold;
+    flex-direction: row;
+    overflow-x: auto;
+}
+
+.list-of-tags {
+    list-style: none;
+    padding: 0;
+    margin-left: 5px;
+    margin-bottom: 0;
+    gap: 5px;
+}
+
+.list-of-tags, .tag-li, .list-of-tags-div {
+    display: flex;
+}
+
+.tag-li {
+    height: 25px;
+    justify-content: center;
+    align-items: center;
+    background-color: #F8003C;
+    border-radius: 10px;
+    border: solid 1px black;
+}
+
+.delete-tag-btn {
+    height: 20px;
+    width: 20px;
+    border: none;
+    background-color: transparent;
+    background-image: url("../../assets/close.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 15px;
+}

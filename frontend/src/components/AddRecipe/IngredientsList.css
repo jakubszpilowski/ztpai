@@ -1,0 +1,41 @@
+.list-of-ingredients-div {
+    width: 90%;
+    height: 20px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.list-of-ingredients {
+    margin-bottom: 0;
+    padding-left: 0;
+    width: 90%;
+    overflow-y: scroll;
+    height: calc(100% - 20px);
+}
+
+.ingredient-li {
+    width: 90%;
+    height: 30px;
+    font-weight: normal;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    font-size: 18px;
+}
+
+.delete-ingredient-btn {
+    border: none;
+    height: 20px;
+    width: 20px;
+    background-image: url("../../assets/close.svg");
+    background-color: transparent;
+    background-size: 15px;
+    background-repeat: no-repeat;
+    background-position: center;
+}

@@ -1,12 +1,12 @@
 import {NavBarComponent} from "../../components/NavBar/NavBarComponent";
 import './Profile.css';
-import GridContainerProfile from "../../components/GridContainer/GridContainerProfileComponent";
+import ProfileContainerComponent from "../../components/ProfileContainer/ProfileContainerComponent";
 
 function Profile() {
     return(
         <div className="profile-page">
             <NavBarComponent/>
-            <GridContainerProfile/>
+            <ProfileContainerComponent/>
         </div>
     );
 }

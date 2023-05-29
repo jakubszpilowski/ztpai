@@ -1,0 +1,90 @@
+.add-recipe-form {
+    height: 75vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+}
+
+.add-recipe-form > * {
+    font-family: 'Cherry Swash', cursive;
+}
+
+.recipe-title-input {
+    height: 30px;
+}
+
+.category-input {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.category-input > * {
+    text-decoration: none;
+    font-family: 'Cherry Swash', cursive;
+    font-size: 18px;
+}
+
+.category-list {
+    border-radius: 10px;
+    border: solid 1px black;
+    width: 50%;
+    text-align: center;
+}
+
+.recipe-title-input, .recipe-tags-input, .ingredients-div, .tags-div, .recipe-inst-input {
+    width: 90%;
+}
+
+.recipe-inst-input, .recipe-tags-input {
+    border: solid 1px black;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.recipe-inst-input {
+    height: 300px;
+}
+
+
+.ingredients-div, .tags-div {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.recipe-ingredients-input, .recipe-tags-input {
+    height: 30px;
+    width: 75%;
+    border: solid 1px black;
+    border-radius: 10px 0 0 10px;
+}
+
+.recipe-ingredients-btn, .recipe-tags-btn{
+    width: 25%;
+    height: 30px;
+    border: 1px solid black;
+    background-color: #F8003C;
+    border-radius: 0 10px 10px 0;
+}
+
+.add-pic-input {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    color: black;
+}
+
+.add-pics {
+    border: none;
+    border-radius: 0;
+    width: 100%;
+}

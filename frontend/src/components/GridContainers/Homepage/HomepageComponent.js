@@ -1,9 +1,9 @@
-import {RecipeComponent} from "../Recipe/RecipeComponent";
-import "./GridContainerComponent.css";
+import {RecipeComponent} from "../../Recipe/RecipeComponent";
+import "./HomepageComponent.css";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 
-function GridContainerComponent() {
+function HomepageComponent() {
     const [recipes, setRecipes] = useState([]);
     useEffect(() => {
         getAllRecipes();
@@ -29,4 +29,4 @@ function GridContainerComponent() {
     );
 }
 
-export default GridContainerComponent;
+export default HomepageComponent;

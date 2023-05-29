@@ -1,10 +1,9 @@
-import {RecipeComponent} from "../Recipe/RecipeComponent";
-import "./GridContainerComponent.css";
+import {useNavigate} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
+import {RecipeComponent} from "../../Recipe/RecipeComponent";
 
-function GridContainerProfile() {
+export const ProfilePageComponent = (id) => {
     let navigate = useNavigate();
     const [recipes, setRecipes] = useState([]);
     useEffect(() => {
@@ -12,7 +11,7 @@ function GridContainerProfile() {
     }, []);
 
     const getUserRecipes = async () => {
-        const result = await axios.get("http://localhost:8080/api/profile/1")
+        const result = await axios.get(`http://localhost:8080/api/profile/${id}`)
             .catch(() => {
                 navigate("/home");
             });
@@ -33,5 +32,3 @@ function GridContainerProfile() {
         </div>
     );
 }
-
-export default GridContainerProfile;

@@ -1,13 +1,13 @@
 import React from 'react';
 import {NavBarComponent} from "../../components/NavBar/NavBarComponent";
-import GridContainerComponent from "../../components/GridContainer/GridContainerComponent";
+import HomepageComponent from "../../components/GridContainers/Homepage/HomepageComponent";
 import "./Main.css";
 
 function Main() {
     return (
         <div className="home-page">
             <NavBarComponent/>
-            <GridContainerComponent/>
+            <HomepageComponent/>
         </div>
     );
 }
