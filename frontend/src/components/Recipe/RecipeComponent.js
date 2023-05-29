@@ -1,13 +1,16 @@
 import "./RecipeComponent.css";
 import spatula from "../../assets/spatula.svg";
 import plate from "../../assets/plate2.svg";
+import dish from "../../assets/default_dish.svg";
 
 export const RecipeComponent = ({id, recipe}) => {
+    //TODO add photo of dish
+
     return (
         <div key={id} className="recipe" id={recipe.id}>
             <div className="recipe-title recipe-center">{recipe.title}</div>
             <div className="image-div">
-                no photo {recipe.img}
+                <img src={dish} alt="dish"/>
             </div>
             <div className="recipe-info recipe-center">by <strong>{recipe.username}</strong></div>
             <div className="icons-div">

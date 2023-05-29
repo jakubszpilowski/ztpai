@@ -77,7 +77,8 @@ button {
 }
 
 .nav-item:hover {
-    width: 200px;
+    width: fit-content;
+    max-width: 200px;
 }
 
 .nav-item:hover > .nav-link > span {

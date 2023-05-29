@@ -22,7 +22,7 @@ export const AddFormComponent = () => {
         }));
     }
 
-    const handleAddIngredient = (e) => {
+    const handleAddIngredient = () => {
         const newItem = {
             ingredient: ingredientList.ingredient,
             amount: ingredientList.amount
