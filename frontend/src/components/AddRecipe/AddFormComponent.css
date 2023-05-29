@@ -102,6 +102,10 @@
     align-items: center;
 }
 
+.ingredients-div > * + input {
+    border-radius: 0;
+}
+
 .recipe-ingredients-input, .recipe-tags-input {
     height: 30px;
     width: 75%;

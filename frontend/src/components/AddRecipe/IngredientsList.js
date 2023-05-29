@@ -3,7 +3,6 @@ import React from "react";
 
 export const IngredientsList = ({ingredients, onDeleteIngredient}) => {
     const handleDeleteIngredient = (e, index) => {
-        e.preventDefault();
         onDeleteIngredient(index);
     }
 
@@ -12,12 +11,12 @@ export const IngredientsList = ({ingredients, onDeleteIngredient}) => {
     return (
         <div className="list-of-ingredients-div" style={{height: divHeight}}>Ingredients
             <ul className="list-of-ingredients">
-                {ingredients.map((ingredient, index) => (
+                {ingredients.map((item, index) => (
                     <li className="ingredient-li" key={index}>
-                        <button className="delete-ingredient-btn"
+                        <button type="button" className="delete-ingredient-btn"
                                 onClick={(e) => handleDeleteIngredient(e, index)}>
                         </button>
-                        {ingredient}
+                        {item.ingredient} {item.amount}
                     </li>
                 ))}
             </ul>

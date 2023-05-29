@@ -6,21 +6,29 @@ import plate from '../../assets/plate2.svg';
 import clock from '../../assets/clock.svg';
 
 export const AddFormComponent = () => {
-    const [ingredients, setIngredients] = useState([]);
-    const [inputIngredient, setInputIngredient] = useState('');
     const [tags, setTags] = useState([]);
     const [inputTag, setInputTag] = useState('');
+    const [ingredients, setIngredients] = useState([]);
+    const [ingredientList, setIngredientList] = useState({
+        ingredient: '',
+        amount: ''
+    })
 
-    const handleIngredientInput = (e) => {
-        setInputIngredient(e.target.value);
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setIngredientList((prevData) => ({
+            ...prevData,
+            [name]: value
+        }));
     }
 
     const handleAddIngredient = (e) => {
-        e.preventDefault();
-        if(inputIngredient !== '') {
-            setIngredients([...ingredients, inputIngredient]);
-            setInputIngredient('');
-        }
+        const newItem = {
+            ingredient: ingredientList.ingredient,
+            amount: ingredientList.amount
+        };
+        setIngredients((prevItems) => [...prevItems, newItem]);
+        setIngredientList({ingredient: '', amount: ''})
     }
 
     const handleDeleteIngredient = (index) => {
@@ -71,11 +79,18 @@ export const AddFormComponent = () => {
             <IngredientsList ingredients={ingredients} onDeleteIngredient={handleDeleteIngredient}/>
             <div className="ingredients-div">
                 <input className="recipe-ingredients-input"
-                       placeholder="enter quantity and name"
-                       value={inputIngredient}
-                       onChange={handleIngredientInput}
+                       placeholder="Ingredient"
+                       name="ingredient"
+                       value={ingredientList.ingredient}
+                       onChange={handleInputChange}
                 />
-                <button className="recipe-ingredients-btn" onClick={handleAddIngredient}>Add</button>
+                <input className="recipe-ingredients-input"
+                       placeholder="amount"
+                       name="amount"
+                       value={ingredientList.amount}
+                       onChange={handleInputChange}
+                />
+                <button className="recipe-ingredients-btn" type="button" onClick={handleAddIngredient}>Add</button>
             </div>
             <TagsList tags={tags} onDeleteTag={handleDeleteTag}/>
             <div className="tags-div">
