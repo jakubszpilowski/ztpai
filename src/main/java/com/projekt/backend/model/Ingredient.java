@@ -12,5 +12,6 @@ public class Ingredient {
     @Column(name = "id_ingredient")
     private long id;
 
+    @Column(nullable = false, unique = true)
     private String name;
 }

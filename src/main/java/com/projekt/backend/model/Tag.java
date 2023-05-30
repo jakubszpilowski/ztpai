@@ -18,6 +18,7 @@ public class Tag {
     @Column(name = "id_tag")
     private Long id;
 
+    @Column(nullable = false, unique = true)
     private String name;
 
     @JsonIgnore
