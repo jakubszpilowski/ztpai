@@ -22,8 +22,20 @@ public class UserService {
     public void updateUserStats(User user) {
         int newUserRecipes = user.getRecipes() + 1;
         double newUserRating = user.getUserRating() / newUserRecipes;
-        user.setRecipes(newUserRecipes);
-        user.setUserRating(newUserRating);
+        changeStats(user, newUserRecipes, newUserRating);
         userRepository.save(user);
+    }
+
+    public void updateUserStatsAfterDelete(User user) {
+        int newUserRecipes = user.getRecipes() - 1;
+        double newUserRating = user.getUserRating() / newUserRecipes;
+        changeStats(user, newUserRecipes, newUserRating);
+        userRepository.save(user);
+
+    }
+
+    private void changeStats(User user, int recipes, double rating) {
+        user.setRecipes(recipes);
+        user.setUserRating(rating);
     }
 }
