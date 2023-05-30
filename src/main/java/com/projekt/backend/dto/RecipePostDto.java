@@ -10,7 +10,7 @@ import java.util.List;
 public class RecipePostDto {
     private String title;
     private long userId;
-    private String categoryName;
+    private String category;
     private int portion;
     private String prepTime;
     private String instruction;

@@ -49,7 +49,7 @@ public class RecipeService {
         User user = userRepository.findById(request.getUserId()).orElseThrow(
                 () -> new UserNotFoundException("User not found!")
         );
-        Category category = categoryRepository.findByName(request.getCategoryName());
+        Category category = categoryRepository.findByName(request.getCategory());
         List<Tag> tags = tagService.createTags(request.getTags());
 
         Recipe recipe =  Recipe.builder()
@@ -74,6 +74,7 @@ public class RecipeService {
         Recipe recipe = recipeRepository.findById(id).orElseThrow(
             () -> new RecipeNotFoundException("Recipe not found")
         );
+        userService.updateUserStatsAfterDelete(recipe.getUser());
         recipeIngredientService.deleteIngredients(recipe);
         recipeRepository.deleteById(id);
     }
