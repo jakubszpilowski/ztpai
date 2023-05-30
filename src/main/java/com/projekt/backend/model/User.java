@@ -42,8 +42,8 @@ public class User implements UserDetails {
     @Column(name = "user_rating")
     private double userRating;
 
-    @Column(name = "image_path")
-    private String imagePath;
+    @Column(name = "avatar")
+    private byte[] avatar;
 
     @Column(name = "is_admin")
     private Boolean isAdmin;

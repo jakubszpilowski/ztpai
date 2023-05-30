@@ -15,8 +15,8 @@ public class Image {
     @Column(name = "id_image")
     private long id;
 
-    @Column(name = "image_path", nullable = false, unique = true)
-    private String path;
+    @Column(name = "image")
+    private byte[] image;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
