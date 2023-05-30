@@ -18,4 +18,12 @@ public class UserService {
         User user = userRepository.findByUsername(username).orElseThrow();
         return user.getId();
     }
+
+    public void updateUserStats(User user) {
+        int newUserRecipes = user.getRecipes() + 1;
+        double newUserRating = user.getUserRating() / newUserRecipes;
+        user.setRecipes(newUserRecipes);
+        user.setUserRating(newUserRating);
+        userRepository.save(user);
+    }
 }

@@ -4,7 +4,7 @@ import com.projekt.backend.model.Tag;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.Set;
+import java.util.List;
 
 @Data
 @Builder
@@ -16,5 +16,5 @@ public class RecipeDto {
     private double rating;
     private String username;
 //    private Image image;
-    private Set<Tag> tags;
+    private List<Tag> tags;
 }

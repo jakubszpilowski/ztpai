@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     List<Recipe> findAllByUser(User user);
+    List<Recipe> findFirst3ByOrderByIdDesc();
+    List<Recipe> findAllByOrderByIdDesc();
 }

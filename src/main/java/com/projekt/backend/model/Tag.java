@@ -3,15 +3,17 @@ package com.projekt.backend.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @Table(name = "Tags")
+@NoArgsConstructor
 public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,5 +25,5 @@ public class Tag {
 
     @JsonIgnore
     @ManyToMany(mappedBy = "tags", fetch = FetchType.LAZY)
-    private Set<Recipe> recipes = new HashSet<>();
+    private List<Recipe> recipes = new ArrayList<>();
 }

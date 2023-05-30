@@ -1,9 +1,14 @@
 package com.projekt.backend.service;
 
 import com.projekt.backend.dto.RecipeDto;
+import com.projekt.backend.dto.RecipePostDto;
+import com.projekt.backend.exception.RecipeNotFoundException;
 import com.projekt.backend.exception.UserNotFoundException;
+import com.projekt.backend.model.Category;
 import com.projekt.backend.model.Recipe;
+import com.projekt.backend.model.Tag;
 import com.projekt.backend.model.User;
+import com.projekt.backend.repository.CategoryRepository;
 import com.projekt.backend.repository.RecipeRepository;
 import com.projekt.backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,10 +22,18 @@ import java.util.List;
 public class RecipeService {
     private final RecipeRepository recipeRepository;
     private final UserRepository userRepository;
+    private final CategoryRepository categoryRepository;
+    private final UserService userService;
+    private final TagService tagService;
+    private final RecipeIngredientService recipeIngredientService;
 
     public List<RecipeDto> getAllRecipes() {
-        List<Recipe> recipes = recipeRepository.findAll();
+        List<Recipe> recipes = recipeRepository.findAllByOrderByIdDesc();
+        return mapRecipesToDtos(recipes);
+    }
 
+    public List<RecipeDto> getLatestRecipes() {
+        List<Recipe> recipes = recipeRepository.findFirst3ByOrderByIdDesc();
         return mapRecipesToDtos(recipes);
     }
 
@@ -29,24 +42,41 @@ public class RecipeService {
                 .orElseThrow(() -> new UserNotFoundException("User not found!"));
 
         List<Recipe> recipes = recipeRepository.findAllByUser(user);
-
         return mapRecipesToDtos(recipes);
     }
 
-//    public long addRecipe(RecipeDto request) {
-//        Recipe recipe =  Recipe.builder()
-//                .favAdded(request.getFavAdded())
-//                .title(request.getTitle())
-//                .user(request.getUser())
-//                .instruction(request.getInstruction())
-//                .portion(request.getPortion())
-//                .category(request.getCategory())
-//                .rating(request.getRating())
-//                .build();
-//
-//        recipeRepository.save(recipe);
-//        return recipe.getId();
-//    }
+    public long addRecipe(RecipePostDto request) {
+        User user = userRepository.findById(request.getUserId()).orElseThrow(
+                () -> new UserNotFoundException("User not found!")
+        );
+        Category category = categoryRepository.findByName(request.getCategoryName());
+        List<Tag> tags = tagService.createTags(request.getTags());
+
+        Recipe recipe =  Recipe.builder()
+                .title(request.getTitle())
+                .category(category)
+                .user(user)
+                .instruction(request.getInstruction())
+                .portion(request.getPortion())
+                .prepTime(request.getPrepTime())
+                .tags(tags)
+                .rating(0)
+                .favAdded(0)
+                .build();
+
+        recipeRepository.save(recipe);
+        userService.updateUserStats(user);
+        recipeIngredientService.saveRecipe(recipe, request.getIngredients());
+        return recipe.getId();
+    }
+
+    public void deleteRecipe(long id) {
+        Recipe recipe = recipeRepository.findById(id).orElseThrow(
+            () -> new RecipeNotFoundException("Recipe not found")
+        );
+        recipeIngredientService.deleteIngredients(recipe);
+        recipeRepository.deleteById(id);
+    }
 
     private List<RecipeDto> mapRecipesToDtos(List<Recipe> recipes) {
         List<RecipeDto> recipeDtos = new ArrayList<>();

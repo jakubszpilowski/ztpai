@@ -1,6 +1,8 @@
 package com.projekt.backend.controller;
 
 import com.projekt.backend.dto.RecipeDto;
+import com.projekt.backend.dto.RecipePostDto;
+import com.projekt.backend.exception.RecipeNotFoundException;
 import com.projekt.backend.exception.UserNotFoundException;
 import com.projekt.backend.service.RecipeService;
 import lombok.RequiredArgsConstructor;
@@ -17,14 +19,24 @@ import java.util.List;
 public class RecipeController {
     private final RecipeService recipeService;
 
-//    @PostMapping("/add")
-//    public ResponseEntity<?> addNewRecipe(@RequestBody RecipeDto request){
-//        long recipeId = recipeService.addRecipe(request);
-//        return new ResponseEntity<>("Recipe added successfully: " + recipeId, HttpStatus.CREATED);
-//    }
+    @PostMapping("/recipes/add")
+    public ResponseEntity<?> addNewRecipe(@RequestBody RecipePostDto request){
+        long recipeId;
+        try {
+            recipeId = recipeService.addRecipe(request);
+        } catch (UserNotFoundException e) {
+            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>("Recipe added successfully: " + recipeId, HttpStatus.CREATED);
+    }
 
-    @GetMapping("/recipes")
-    public ResponseEntity<List<RecipeDto>> getAllRecipes(){
+    @GetMapping("/recipes/latest")
+    public ResponseEntity<List<RecipeDto>> getLatestRecipes(){
+        return new ResponseEntity<>(recipeService.getLatestRecipes(), HttpStatus.OK);
+    }
+
+    @GetMapping("/recipes/all")
+    public ResponseEntity<List<RecipeDto>> getAllRecipes() {
         return new ResponseEntity<>(recipeService.getAllRecipes(), HttpStatus.OK);
     }
 
@@ -39,5 +51,15 @@ public class RecipeController {
         }
 
         return new ResponseEntity<>(userRecipes, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/recipes/delete/{id}")
+    public ResponseEntity<?> deleteRecipe(@PathVariable long id) {
+        try {
+            recipeService.deleteRecipe(id);
+        } catch (RecipeNotFoundException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>("Recipe deleted successfully " + id, HttpStatus.OK);
     }
 }

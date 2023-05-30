@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -53,7 +54,7 @@ public class Recipe {
     @JoinTable(name = "Recipe_to_tags",
             joinColumns = @JoinColumn(name = "id_recipe"),
             inverseJoinColumns = @JoinColumn(name = "id_tag"))
-    private Set<Tag> tags = new HashSet<>();
+    private List<Tag> tags = new ArrayList<>();
 
     @OneToOne
     private Category category;

@@ -11,6 +11,7 @@ import lombok.Setter;
 @Table(name = "Ingredients_to_recipe")
 public class RecipeIngredient {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @JsonIgnore
