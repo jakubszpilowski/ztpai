@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import {BrowserRouter as Router, Navigate, Route, Routes} from 'react-router-dom';
 import Login from "./pages/Login/Login";
 import Main from "./pages/Main/Main";
 import Register from "./pages/Login/Register"
@@ -17,13 +17,13 @@ function App() {
     return (
         <Router>
             <Routes>
-                <Route exact path="/" element={<Login/>}/>
-                <Route exact path="/login" element={<Login/>}/>
-                <Route exact path="/register" element={<Register/>}/>
-                <Route exact path="/home" element={<Main/>}/>
-                <Route exact path="/all" element={<AllRecipes/>}/>
-                <Route exact path="/profile/:id" element={<Profile/>}/>
-                <Route exact path="/fav/:id" element={<Favourites/>}/>
+                <Route exact path="/" element={<Login onLogIn={SetToken}/>}/>
+                <Route exact path="/login" element={<Login onLogIn={SetToken}/>}/>
+                <Route exact path="/register" element={<Register onRegister={SetToken}/>}/>
+                <Route exact path="/home" element={token ? <Main/> : <Navigate to={'/login'}/>}/>
+                <Route exact path="/all" element={token ? <AllRecipes/> : <Navigate to={'/login'}/>}/>
+                <Route exact path="/profile/:id" element={token ? <Profile/> : <Navigate to={'/login'}/>}/>
+                <Route exact path="/fav/:id" element={token ? <Favourites/> : <Navigate to={'/login'}/>}/>
             </Routes>
         </Router>
     );

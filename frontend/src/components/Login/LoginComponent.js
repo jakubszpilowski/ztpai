@@ -38,8 +38,7 @@ export const LoginComponent = () => {
                 setError(errData.message);
             }
         } catch (e) {
-            console.log(e);
-            setError('Invalid username or password');
+            setError('Network problem, try again later');
         }
     };
 

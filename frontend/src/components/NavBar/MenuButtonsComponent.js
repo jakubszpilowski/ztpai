@@ -9,6 +9,7 @@ export const MenuButtonsComponent = ({userId}) => {
 
     function Logout() {
         localStorage.removeItem("token");
+        localStorage.removeItem("user_id");
         navigate("/login");
     }
 
@@ -34,7 +35,7 @@ export const MenuButtonsComponent = ({userId}) => {
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <button className="nav-link" onClick={Logout}>
+                        <button className="nav-link" type="button" onClick={Logout}>
                             <img className="image" src={logout} alt="logout"/>
                             <span>Logout</span>
                         </button>

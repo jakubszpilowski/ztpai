@@ -7,11 +7,11 @@ import {Link} from "react-router-dom";
 function HomepageComponent() {
     const [recipes, setRecipes] = useState([]);
     useEffect(() => {
-        getAllRecipes();
+        getLatestRecipes();
     }, []);
 
-    const getAllRecipes = async () => {
-        const result = await axios.get("http://localhost:8080/api/recipes");
+    const getLatestRecipes = async () => {
+        const result = await axios.get("http://localhost:8080/api/recipes/latest");
         setRecipes(result.data);
     }
 

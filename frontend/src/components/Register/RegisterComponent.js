@@ -80,7 +80,7 @@ export const RegisterComponent = () => {
                 setError(errData.message);
             }
         } catch (e) {
-            setError('Network problem');
+            setError('Network problem, try again later');
         }
     }
 

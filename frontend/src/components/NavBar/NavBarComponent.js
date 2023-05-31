@@ -4,25 +4,21 @@ import {SearchBarComponent} from "./SearchBarComponent";
 import {MenuButtonsComponent} from "./MenuButtonsComponent";
 import {MenuTogglerComponent} from "./MenuTogglerComponent";
 import axios from "axios";
-import {useState} from "react";
-import {useNavigate, useParams} from "react-router-dom";
+import {useEffect, useState} from "react";
 
 export const NavBarComponent = () => {
-    const token = localStorage.getItem("token");
-    let navigate = useNavigate();
     const [userId, setUserId] = useState('');
-    const { pathId } = useParams();
 
-    console.log(pathId);
+    useEffect(() => {
+        loadUserID().then();
+    }, []);
 
-    if(!token) {
-        navigate('/login');
-    } else {
-        axios.get('http://localhost:8080/api/users').then(response => {
-            setUserId(response.data);
-        }).catch(e => {
-            console.log(e);
-        })
+    const loadUserID = async () => {
+        if(!localStorage.getItem("user_id") || localStorage.getItem("user_id") === '') {
+            const result = await axios.get('http://localhost:8080/api/users');
+            setUserId(result.data);
+            localStorage.setItem("user_id", userId);
+        }
     }
 
     return (

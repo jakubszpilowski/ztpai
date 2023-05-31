@@ -5,6 +5,10 @@
     transform: rotate(-1.5deg);
 }
 
+.recipe > * {
+    font-family: 'Cherry Swash', cursive;
+}
+
 .image-div {
     position: absolute;
     width: 150px;
@@ -24,8 +28,11 @@
 }
 
 .recipe-title {
-    font-size: 30px;
+    width: 90%;
+    height: fit-content;
+    font-size: 25px;
     font-weight: bold;
+    overflow: hidden;
 }
 
 .recipe-center {
@@ -63,7 +70,7 @@
 }
 
 .icons-div {
-    height: 100px;
+    height: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -75,6 +82,24 @@
     .image-div {
         width: 100px;
         right: -70px;
+    }
+
+    .image-div > img {
+        width: 70px;
+    }
+}
+
+@media only screen and (max-device-width: 340px) {
+    .recipe-title {
+        font-size: 20px;
+    }
+
+    .recipe {
+        width: 220px;
+    }
+
+    .image-div {
+        right: -80px;
     }
 }
 

@@ -6,7 +6,7 @@
 }
 
 .check-latest {
-    height: 150px;
+    height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -20,8 +20,9 @@
 
 .grid-container {
     display: grid;
-    grid-gap: 100px;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 400px 400px 350px;
+    grid-template-rows: 350px;
+    align-items: center;
 }
 
 .grid-container > * {
@@ -51,14 +52,48 @@
     background-color: #F8003C;
 }
 
-@media only screen and (max-device-width: 1000px) {
+@media only screen and (max-device-width: 1220px) {
     .grid-container {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 450px 400px;
+        grid-auto-rows: 400px;
     }
 }
 
-@media only screen and (max-device-width: 600px) {
+@media only screen and (max-device-width: 850px) {
     .grid-container {
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: 400px;
+    }
+}
+
+@media only screen and (max-device-width: 500px) {
+    .check-latest > * {
+        margin-top: 20px;
+    }
+
+    .grid-container {
+        grid-template-columns: 350px;
+        grid-template-rows: 350px;
+    }
+}
+
+@media only screen and (max-device-width: 400px) {
+    .check-latest > * {
+        font-size: 25px;
+    }
+
+    .grid-container {
+        grid-template-columns: 320px;
+        grid-template-rows: 320px;
+    }
+}
+
+@media only screen and (max-device-width: 340px) {
+    .check-latest > * {
+        font-size: 23px;
+    }
+
+    .grid-container {
+        grid-template-columns: 300px;
+        grid-template-rows: 300px;
     }
 }

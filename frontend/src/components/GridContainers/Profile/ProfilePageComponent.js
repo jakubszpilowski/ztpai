@@ -3,11 +3,12 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {RecipeComponent} from "../../Recipe/RecipeComponent";
 
-export const ProfilePageComponent = (id) => {
+export const ProfilePageComponent = () => {
     let navigate = useNavigate();
+    const id = localStorage.getItem("user_id");
     const [recipes, setRecipes] = useState([]);
     useEffect(() => {
-        getUserRecipes();
+        getUserRecipes().then();
     }, []);
 
     const getUserRecipes = async () => {
