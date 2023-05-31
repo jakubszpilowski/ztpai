@@ -79,6 +79,14 @@ public class RecipeService {
         recipeRepository.deleteById(id);
     }
 
+    public List<RecipeDto> getFavourites(long id){
+        User user = userRepository.findById(id).orElseThrow(
+                () -> new UserNotFoundException("User not found")
+        );
+        List<Recipe> recipes = recipeRepository.findAllByUser(user);
+        return mapRecipesToDtos(recipes);
+    }
+
     private List<RecipeDto> mapRecipesToDtos(List<Recipe> recipes) {
         List<RecipeDto> recipeDtos = new ArrayList<>();
 
