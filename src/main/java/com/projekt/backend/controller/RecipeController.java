@@ -40,6 +40,17 @@ public class RecipeController {
         return new ResponseEntity<>(recipeService.getAllRecipes(), HttpStatus.OK);
     }
 
+    @GetMapping("/favourites/{id}")
+    public ResponseEntity<?> getFavouritesRecipes(@PathVariable long id) {
+        List<RecipeDto> recipeDtos;
+        try {
+            recipeDtos = recipeService.getFavourites(id);
+        } catch (UserNotFoundException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(recipeDtos, HttpStatus.OK);
+    }
+
     @GetMapping("/profile/{id}")
     public ResponseEntity<?> getAllUserRecipes(@PathVariable long id) {
         List<RecipeDto> userRecipes;

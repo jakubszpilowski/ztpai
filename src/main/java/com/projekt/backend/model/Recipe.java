@@ -30,9 +30,12 @@ public class Recipe {
 
     private int portion;
 
-    private double rating = 0;
+    private double rating;
 
-    private int favAdded = 0;
+    @Column(name = "number_of_rating")
+    private double ratingsNumber;
+
+    private int favAdded;
 
     @Column(name = "instruction", columnDefinition = "TEXT")
     private String instruction;
@@ -44,17 +47,17 @@ public class Recipe {
 
     @JsonIgnore
     @ManyToMany(mappedBy = "favouriteRecipes", fetch = FetchType.LAZY)
-    private Set<User> addedToFav = new HashSet<>();
+    private List<User> addedToFav;
 
     @OneToMany(mappedBy = "commentedRecipe")
-    private Set<Comment> comments = new HashSet<>();
+    private Set<Comment> comments;
 
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "Recipe_to_tags",
             joinColumns = @JoinColumn(name = "id_recipe"),
             inverseJoinColumns = @JoinColumn(name = "id_tag"))
-    private List<Tag> tags = new ArrayList<>();
+    private List<Tag> tags;
 
     @OneToOne
     private Category category;

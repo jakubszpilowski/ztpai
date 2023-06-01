@@ -4,11 +4,9 @@ import com.projekt.backend.dto.RecipeDto;
 import com.projekt.backend.dto.RecipePostDto;
 import com.projekt.backend.exception.RecipeNotFoundException;
 import com.projekt.backend.exception.UserNotFoundException;
-import com.projekt.backend.model.Category;
-import com.projekt.backend.model.Recipe;
-import com.projekt.backend.model.Tag;
-import com.projekt.backend.model.User;
+import com.projekt.backend.model.*;
 import com.projekt.backend.repository.CategoryRepository;
+import com.projekt.backend.repository.FavouriteRepository;
 import com.projekt.backend.repository.RecipeRepository;
 import com.projekt.backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -26,6 +25,7 @@ public class RecipeService {
     private final UserService userService;
     private final TagService tagService;
     private final RecipeIngredientService recipeIngredientService;
+    private final FavouriteRepository favouriteRepository;
 
     public List<RecipeDto> getAllRecipes() {
         List<Recipe> recipes = recipeRepository.findAllByOrderByIdDesc();
@@ -61,6 +61,7 @@ public class RecipeService {
                 .prepTime(request.getPrepTime())
                 .tags(tags)
                 .rating(0)
+                .ratingsNumber(0)
                 .favAdded(0)
                 .build();
 
@@ -83,7 +84,8 @@ public class RecipeService {
         User user = userRepository.findById(id).orElseThrow(
                 () -> new UserNotFoundException("User not found")
         );
-        List<Recipe> recipes = recipeRepository.findAllByUser(user);
+        List<Favourites> favourites = favouriteRepository.getFavouritesByUser(user);
+        List<Recipe> recipes = favourites.stream().map(Favourites::getRecipe).collect(Collectors.toList());
         return mapRecipesToDtos(recipes);
     }
 
