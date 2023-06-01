@@ -20,10 +20,13 @@ public class RecipeController {
     private final RecipeService recipeService;
 
     @PostMapping("/recipes/add")
-    public ResponseEntity<?> addNewRecipe(@RequestBody RecipePostDto request){
+    public ResponseEntity<?> addNewRecipe(
+            @RequestHeader("Authorization") String token,
+            @RequestBody RecipePostDto request
+    ) {
         long recipeId;
         try {
-            recipeId = recipeService.addRecipe(request);
+            recipeId = recipeService.addRecipe(token, request);
         } catch (UserNotFoundException e) {
             return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
         }
@@ -40,23 +43,23 @@ public class RecipeController {
         return new ResponseEntity<>(recipeService.getAllRecipes(), HttpStatus.OK);
     }
 
-    @GetMapping("/favourites/{id}")
-    public ResponseEntity<?> getFavouritesRecipes(@PathVariable long id) {
+    @GetMapping("/favourites")
+    public ResponseEntity<?> getFavouritesRecipes(@RequestHeader("Authorization") String token) {
         List<RecipeDto> recipeDtos;
         try {
-            recipeDtos = recipeService.getFavourites(id);
+            recipeDtos = recipeService.getFavourites(token);
         } catch (UserNotFoundException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(recipeDtos, HttpStatus.OK);
     }
 
-    @GetMapping("/profile/{id}")
-    public ResponseEntity<?> getAllUserRecipes(@PathVariable long id) {
+    @GetMapping("/profile")
+    public ResponseEntity<?> getAllUserRecipes(@RequestHeader("Authorization") String token) {
         List<RecipeDto> userRecipes;
 
         try {
-            userRecipes = recipeService.getUserRecipes(id);
+            userRecipes = recipeService.getUserRecipes(token);
         } catch (UserNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
