@@ -1,6 +1,8 @@
 package com.projekt.backend.service;
 
 import com.projekt.backend.config.JwtService;
+import com.projekt.backend.dto.UserDto;
+import com.projekt.backend.exception.UserNotFoundException;
 import com.projekt.backend.repository.UserRepository;
 import com.projekt.backend.model.User;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +19,20 @@ public class UserService {
         String username = service.extractUsername(jwt);
         User user = userRepository.findByUsername(username).orElseThrow();
         return user.getId();
+    }
+
+    public UserDto getUserThumbnail(long id) {
+        User user = userRepository.findById(id).orElseThrow(
+                () -> new UserNotFoundException("User not found")
+        );
+
+        return UserDto
+                .builder()
+                .username(user.getUsername())
+                .rating(user.getUserRating())
+                .recipes(user.getRecipes())
+    //            .avatar(user.getAvatar())
+                .build();
     }
 
     public void updateUserStats(User user) {

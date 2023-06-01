@@ -1,5 +1,7 @@
 package com.projekt.backend.controller;
 
+import com.projekt.backend.dto.UserDto;
+import com.projekt.backend.exception.UserNotFoundException;
 import com.projekt.backend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,5 +23,16 @@ public class UserController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
+    }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<?> getUserThumbnail(@PathVariable long id) {
+        UserDto userDto;
+        try {
+            userDto = userService.getUserThumbnail(id);
+        } catch (UserNotFoundException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
 }
