@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {RecipeComponent} from "../../Recipe/RecipeComponent";
 
-export const ProfilePageComponent = ({id}) => {
+export const ProfilePageComponent = () => {
     let navigate = useNavigate();
     const [recipes, setRecipes] = useState([]);
 
@@ -12,7 +12,7 @@ export const ProfilePageComponent = ({id}) => {
     }, [setRecipes]);
 
     const getUserRecipes = async () => {
-        const result = await axios.get(`http://localhost:8080/api/profile/${id}`)
+        const result = await axios.get(`http://localhost:8080/api/profile`)
             .catch(() => {
                 navigate("/home");
             });

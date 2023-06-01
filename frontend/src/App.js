@@ -22,8 +22,8 @@ function App() {
                 <Route exact path="/register" element={!token ? <Register onRegister={SetToken}/> : <Navigate to={'/home'}/>}/>
                 <Route exact path="/home" element={token ? <Main/> : <Navigate to={'/login'}/>}/>
                 <Route exact path="/all" element={token ? <AllRecipes/> : <Navigate to={'/login'}/>}/>
-                <Route exact path="/profile/:id" element={token ? <Profile/> : <Navigate to={'/login'}/>}/>
-                <Route exact path="/fav/:id" element={token ? <Favourites/> : <Navigate to={'/login'}/>}/>
+                <Route exact path="/profile" element={token ? <Profile/> : <Navigate to={'/login'}/>}/>
+                <Route exact path="/favourites" element={token ? <Favourites/> : <Navigate to={'/login'}/>}/>
             </Routes>
         </Router>
     );

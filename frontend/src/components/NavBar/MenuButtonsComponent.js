@@ -4,10 +4,9 @@ import logout from "../../assets/logout.svg";
 import cookbook from  "../../assets/recipe-book.svg";
 import {Link} from "react-router-dom";
 
-export const MenuButtonsComponent = ({userId}) => {
+export const MenuButtonsComponent = () => {
     function Logout() {
         localStorage.removeItem("token");
-        localStorage.removeItem("user");
         window.location.href = '/login';
     }
 
@@ -21,13 +20,13 @@ export const MenuButtonsComponent = ({userId}) => {
                         </Link>
                     </li>
                     <li className="nav-item">
-                       <Link className="nav-link" to={`/fav/${userId}`}>
+                       <Link className="nav-link" to={'/favourites'}>
                             <img className="image" src={spatula} alt="spatula"/>
                             <span>Favourites</span>
                        </Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to={`/profile/${userId}`}>
+                        <Link className="nav-link" to={'/profile'}>
                             <img className="image" src={profile} alt="profile"/>
                             <span>Profile</span>
                         </Link>

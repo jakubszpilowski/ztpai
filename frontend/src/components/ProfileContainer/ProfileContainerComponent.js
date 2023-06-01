@@ -6,7 +6,6 @@ import {AddButtonComponent} from "../AddRecipe/AddButtonComponent";
 import {AddModalComponent} from "../AddRecipe/AddModalComponent";
 import {ProfilePageComponent} from "../GridContainers/Profile/ProfilePageComponent";
 import axios from "axios";
-import {useParams} from "react-router-dom";
 
 function ProfileContainerComponent() {
     const [user, setUser] = useState({
@@ -15,35 +14,22 @@ function ProfileContainerComponent() {
         recipes: 0,
         rating: 0,
     });
-    const [isUserSet, setUserSet] = useState(false);
-    const {id} = useParams();
 
     useEffect(() => {
-        const userId = localStorage.getItem("user");
-        if(checkUser(userId)) {
-            loadUserInfo().then();
-        } else {
-            window.location.href = `/profile/${userId}`;
-        }
-
+        loadUserInfo().then();
     }, [user]);
 
-    const checkUser = (userId) => {
-        return id === userId;
-    }
-
     const loadUserInfo = async () => {
-        const result = await axios.get(`http://localhost:8080/api/user/${id}`);
+        const result = await axios.get(`http://localhost:8080/api/user`);
         if(result.status === 200) {
             setUser(result.data);
-            setUserSet(true);
         }
     }
 
     return (
         <div className="profile-container">
             <UserProfileComponent user={user}/>
-            {isUserSet && <ProfilePageComponent id={user.id}/>}
+            <ProfilePageComponent/>
             <ProfileToggleButton/>
             <AddButtonComponent/>
             <AddModalComponent/>

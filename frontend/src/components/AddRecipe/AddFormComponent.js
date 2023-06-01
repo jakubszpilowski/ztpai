@@ -4,7 +4,6 @@ import {useState} from "react";
 import {TagsList} from "./TagsList";
 import plate from '../../assets/plate2.svg';
 import clock from '../../assets/clock.svg';
-import {useParams} from "react-router-dom";
 
 export const AddFormComponent = () => {
     const [tags, setTags] = useState([]);
@@ -19,7 +18,6 @@ export const AddFormComponent = () => {
     const [portion, setPortion] = useState('');
     const [prepTime, setPrepTime] = useState('');
     const [instruction, setInstruction] = useState('');
-    const { userId } = useParams();
 
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
@@ -86,7 +84,6 @@ export const AddFormComponent = () => {
         e.preventDefault();
         //TODO send form to backend
         const recipeDTO =  {
-            userId: userId,
             title: title,
             category: category,
             portion: portion,
