@@ -1,14 +1,15 @@
 import {useNavigate} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import {RecipeComponent} from "../../Recipe/RecipeComponent";
+import './ProfilePageComponent.css';
+import {RecipeThumbnail} from "../../Recipe/RecipeThumbnail";
 
 export const ProfilePageComponent = () => {
     let navigate = useNavigate();
     const [recipes, setRecipes] = useState([]);
 
     useEffect(() => {
-        getUserRecipes().then();
+        getUserRecipes();
     }, [setRecipes]);
 
     const getUserRecipes = async () => {
@@ -20,16 +21,16 @@ export const ProfilePageComponent = () => {
     }
 
     return (
-        <div className="flex-container">
-            <div className="grid-container">
-                {
-                    recipes.map(recipe => (
-                        <RecipeComponent key={recipe.id}
-                                         recipe={recipe}
-                        />
-                    ))
-                }
-            </div>
+        <div className="grid-container-profile">
+            {
+                recipes.map(recipe => (
+                    <RecipeThumbnail key={recipe.id}
+                                     recipe={recipe}
+                                     user={null}
+                    />
+                ))
+            }
+            <></>
         </div>
     );
 }

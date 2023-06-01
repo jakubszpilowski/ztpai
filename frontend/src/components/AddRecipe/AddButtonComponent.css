@@ -10,4 +10,5 @@
     background-size: 40px;
     background-color: #F8003C;
     border: solid 1px black;
+    z-index: 5000;
 }

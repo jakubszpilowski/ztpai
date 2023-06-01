@@ -16,19 +16,17 @@ function ProfileContainerComponent() {
     });
 
     useEffect(() => {
-        loadUserInfo().then();
-    }, [user]);
+        loadUserInfo();
+    }, []);
 
     const loadUserInfo = async () => {
         const result = await axios.get(`http://localhost:8080/api/user`);
-        if(result.status === 200) {
-            setUser(result.data);
-        }
+        setUser(result.data);
     }
 
     return (
         <div className="profile-container">
-            <UserProfileComponent user={user}/>
+            {user && <UserProfileComponent user={user}/>}
             <ProfilePageComponent/>
             <ProfileToggleButton/>
             <AddButtonComponent/>

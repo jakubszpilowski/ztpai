@@ -1,9 +1,10 @@
 import './AddFormComponent.css';
 import {IngredientsList} from "./IngredientsList";
-import {useState} from "react";
+import React, {useState} from "react";
 import {TagsList} from "./TagsList";
 import plate from '../../assets/plate2.svg';
 import clock from '../../assets/clock.svg';
+import axios from "axios";
 
 export const AddFormComponent = () => {
     const [tags, setTags] = useState([]);
@@ -80,7 +81,7 @@ export const AddFormComponent = () => {
         setTags(updateTags);
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         //TODO send form to backend
         const recipeDTO =  {
@@ -89,11 +90,20 @@ export const AddFormComponent = () => {
             portion: portion,
             prepTime: prepTime,
             tags: tags,
-            ingredients: ingredientList,
+            ingredients: ingredients,
             instruction: instruction
         }
 
-        console.log(JSON.stringify(recipeDTO));
+        console.log(recipeDTO);
+
+        try {
+            const result = await axios.post("http://localhost:8080/api/recipes/add", recipeDTO);
+            if(result.status === 201) {
+                window.location.reload();
+            }
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     return (
@@ -178,6 +188,10 @@ export const AddFormComponent = () => {
             <div className="add-pic-input">
                 You can also add pictures of your dish:
                 <input className="add-pics" id="file-input" type="file" multiple/>
+            </div>
+            <div className="modal-footer">
+                <button type="button" className="btn btn-secondary app-font" data-bs-dismiss="modal">Close</button>
+                <button type="submit" className="btn bg-color app-font font-black">Save</button>
             </div>
         </form>
     );
