@@ -1,10 +1,8 @@
 import React, {useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {SetToken} from "../../auth/SetToken";
 
 export const RegisterComponent = () => {
-    let navigate = useNavigate();
-
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
@@ -74,7 +72,7 @@ export const RegisterComponent = () => {
                 const token = data.token;
                 localStorage.setItem("token", token);
                 SetToken(token);
-                navigate("/home");
+                window.location.href = '/home';
             } else {
                 const errData = await response.json();
                 setError(errData.message);

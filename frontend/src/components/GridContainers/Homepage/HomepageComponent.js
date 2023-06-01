@@ -7,7 +7,7 @@ import {Link} from "react-router-dom";
 function HomepageComponent() {
     const [recipes, setRecipes] = useState([]);
     useEffect(() => {
-        getLatestRecipes();
+        getLatestRecipes().then();
     }, []);
 
     const getLatestRecipes = async () => {

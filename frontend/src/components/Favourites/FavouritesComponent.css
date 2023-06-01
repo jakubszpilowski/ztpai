@@ -1,0 +1,20 @@
+.favourites-container-empty {
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.favourites-container-empty > span {
+    font-family: 'Cherry Swash', cursive;
+    text-align: center;
+    font-size: 35px;
+}
+
+@media only screen and (max-device-width: 500px) {
+    .favourites-container-empty > span {
+        font-size: 25px;
+    }
+}

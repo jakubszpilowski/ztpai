@@ -2,15 +2,13 @@ import spatula from "../../assets/spatula.svg";
 import profile from "../../assets/user.svg";
 import logout from "../../assets/logout.svg";
 import cookbook from  "../../assets/recipe-book.svg";
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 export const MenuButtonsComponent = ({userId}) => {
-    let navigate = useNavigate();
-
     function Logout() {
         localStorage.removeItem("token");
-        localStorage.removeItem("user_id");
-        navigate("/login");
+        localStorage.removeItem("user");
+        window.location.href = '/login';
     }
 
     return (

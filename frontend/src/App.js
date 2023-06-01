@@ -17,9 +17,9 @@ function App() {
     return (
         <Router>
             <Routes>
-                <Route exact path="/" element={<Login onLogIn={SetToken}/>}/>
-                <Route exact path="/login" element={<Login onLogIn={SetToken}/>}/>
-                <Route exact path="/register" element={<Register onRegister={SetToken}/>}/>
+                <Route exact path="/" element={!token ? <Login onLogIn={SetToken}/> : <Navigate to={'/home'}/>}/>
+                <Route exact path="/login" element={!token ? <Login onLogIn={SetToken}/> : <Navigate to={'/home'}/>}/>
+                <Route exact path="/register" element={!token ? <Register onRegister={SetToken}/> : <Navigate to={'/home'}/>}/>
                 <Route exact path="/home" element={token ? <Main/> : <Navigate to={'/login'}/>}/>
                 <Route exact path="/all" element={token ? <AllRecipes/> : <Navigate to={'/login'}/>}/>
                 <Route exact path="/profile/:id" element={token ? <Profile/> : <Navigate to={'/login'}/>}/>

@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {SetToken} from "../../auth/SetToken";
 
 export const LoginComponent = () => {
-    let navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -32,7 +31,7 @@ export const LoginComponent = () => {
                 const token = data.token;
                 localStorage.setItem("token", token);
                 SetToken(token);
-                navigate("/home");
+                window.location.href = "/home";
             } else {
                 const errData = await response.json();
                 setError(errData.message);

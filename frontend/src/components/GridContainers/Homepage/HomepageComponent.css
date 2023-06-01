@@ -70,6 +70,10 @@
         margin-top: 20px;
     }
 
+    .link-to-all {
+        background-color: #F8003C;
+    }
+
     .grid-container {
         grid-template-columns: 350px;
         grid-template-rows: 350px;
