@@ -31,7 +31,7 @@ public class UserController {
         try {
             userDto = userService.getUserThumbnail(id);
         } catch (UserNotFoundException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("home", HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }

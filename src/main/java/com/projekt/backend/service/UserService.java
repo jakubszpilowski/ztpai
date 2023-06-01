@@ -22,12 +22,13 @@ public class UserService {
     }
 
     public UserDto getUserThumbnail(long id) {
-        User user = userRepository.findById(id).orElseThrow(
+       User user = userRepository.findById(id).orElseThrow(
                 () -> new UserNotFoundException("User not found")
         );
 
         return UserDto
                 .builder()
+                .id(user.getId())
                 .username(user.getUsername())
                 .rating(user.getUserRating())
                 .recipes(user.getRecipes())
