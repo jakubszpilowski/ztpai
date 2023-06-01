@@ -9,7 +9,6 @@ import java.util.List;
 @Builder
 public class RecipePostDto {
     private String title;
-    private long userId;
     private String category;
     private int portion;
     private String prepTime;

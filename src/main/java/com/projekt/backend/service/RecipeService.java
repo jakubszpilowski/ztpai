@@ -37,7 +37,8 @@ public class RecipeService {
         return mapRecipesToDtos(recipes);
     }
 
-    public List<RecipeDto> getUserRecipes(long id) {
+    public List<RecipeDto> getUserRecipes(String token) {
+        long id = userService.getUserId(token);
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("User not found!"));
 
@@ -45,8 +46,9 @@ public class RecipeService {
         return mapRecipesToDtos(recipes);
     }
 
-    public long addRecipe(RecipePostDto request) {
-        User user = userRepository.findById(request.getUserId()).orElseThrow(
+    public long addRecipe(String token, RecipePostDto request) {
+        long userId = userService.getUserId(token);
+        User user = userRepository.findById(userId).orElseThrow(
                 () -> new UserNotFoundException("User not found!")
         );
         Category category = categoryRepository.findByName(request.getCategory());
@@ -80,7 +82,8 @@ public class RecipeService {
         recipeRepository.deleteById(id);
     }
 
-    public List<RecipeDto> getFavourites(long id){
+    public List<RecipeDto> getFavourites(String token){
+        long id = userService.getUserId(token);
         User user = userRepository.findById(id).orElseThrow(
                 () -> new UserNotFoundException("User not found")
         );

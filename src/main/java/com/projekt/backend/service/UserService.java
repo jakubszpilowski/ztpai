@@ -21,7 +21,8 @@ public class UserService {
         return user.getId();
     }
 
-    public UserDto getUserThumbnail(long id) {
+    public UserDto getUserThumbnail(String token) {
+       long id = getUserId(token);
        User user = userRepository.findById(id).orElseThrow(
                 () -> new UserNotFoundException("User not found")
         );

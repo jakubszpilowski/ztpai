@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     private final UserService userService;
 
+    //TODO admin panel
     @GetMapping("/users")
-    public ResponseEntity<String> getUserId(@RequestHeader("Authorization") String token) {
+    public ResponseEntity<String> getAllUsers(@RequestHeader("Authorization") String token) {
         try {
             String userId = String.valueOf(userService.getUserId(token));
             return ResponseEntity.ok(userId);
@@ -25,14 +26,9 @@ public class UserController {
         }
     }
 
-    @GetMapping("/user/{id}")
-    public ResponseEntity<?> getUserThumbnail(@PathVariable long id) {
-        UserDto userDto;
-        try {
-            userDto = userService.getUserThumbnail(id);
-        } catch (UserNotFoundException e) {
-            return new ResponseEntity<>("home", HttpStatus.NOT_FOUND);
-        }
+    @GetMapping("/user")
+    public ResponseEntity<?> getUserThumbnail(@RequestHeader("Authorization") String token) {
+        UserDto userDto = userService.getUserThumbnail(token);
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
 }
